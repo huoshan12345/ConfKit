@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageReference Include="System.Text.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ConfKit\ConfKit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestData\**\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\uci\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <_RootDir>$(MSBuildThisFileDirectory)../../</_RootDir>
+    <VSTestLogger>trx%3bLogFileName=$(MSBuildProjectName).trx</VSTestLogger>
+    <VSTestResultsDirectory>$(_RootDir)TestResults/$(Configuration)/$(TargetFramework)</VSTestResultsDirectory>
+  </PropertyGroup>
+
+</Project>
