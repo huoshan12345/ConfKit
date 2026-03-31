@@ -6,12 +6,9 @@
 version: 2
 
 registries:
-  nuget-public:
+  nuget:
     type: nuget-feed
     url: https://api.nuget.org/v3/index.json
-  huoshan:
-    type: nuget-feed
-    url: https://www.myget.org/F/huoshan12345/api/v3/index.json
 
 updates:
   - package-ecosystem: nuget
@@ -21,5 +18,4 @@ updates:
     rebase-strategy: disabled
     open-pull-requests-limit: 50
     registries:
-      - nuget-public
-      - huoshan
+      - nuget
