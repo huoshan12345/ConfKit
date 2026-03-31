@@ -1,19 +1,35 @@
 # ConfKit [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE.TXT) [![Build](https://github.com/huoshan12345/ConfKit/actions/workflows/build.yml/badge.svg)](https://github.com/huoshan12345/ConfKit/actions/workflows/build.yml)
 
-A .NET library for parsing and generating INI configuration files with support for nested sections and JSON conversion.
+ConfKit is a lightweight and extensible .NET library for parsing and generating multiple configuration formats, including **INI** and **UCI (OpenWrt Unified Configuration Interface)**.
 
-## Features
+It provides a consistent programming model, supports structured configuration access, and enables seamless conversion to JSON for strong typing and serialization.
 
-- Parse and generate INI-formatted content
-- Support nested sections using dot notation (e.g., `[parent.child]`)
-- Handle relative section nesting (e.g., `[.child]` for relative hierarchy)
-- Convert between INI structure and JSON objects
-- Preserve entry order and section hierarchy
-- Handle entries before any section declarations
+---
+
+### 🧩 Multi-format Support
+- INI configuration parsing and generation
+- UCI (OpenWrt) configuration parsing and generation
+
+### 🏗 Structured Configuration Model
+- Hierarchical sections and entries
+- Strongly-typed object model
+- Preserve structure and ordering
+
+### 🔄 JSON Interoperability
+- Convert configurations to `JsonObject`
+- Deserialize into custom strongly-typed classes
+- Flexible integration with `System.Text.Json`
+
+### ⚡ Developer Friendly
+- Simple and intuitive API
+- Works with `netstandard2.0` and modern .NET versions
+- Easy to extend for additional formats (TOML, YAML, etc.)
 
 ||TargetFramework(s)|Package|
 |----|----|----|
 |ConfKit|![netstandard2.0](https://img.shields.io/badge/netstandard-2.0-30a14e.svg) ![net8.0](https://img.shields.io/badge/net-8.0-30a14e.svg) ![net9.0](https://img.shields.io/badge/net-9.0-30a14e.svg) ![net10.0](https://img.shields.io/badge/net-10.0-30a14e.svg) |[![](https://img.shields.io/nuget/v/ConfKit?logo=nuget&label=nuget)](https://www.nuget.org/packages/ConfKit)|
+
+---
 
 ## Installation
 
@@ -21,9 +37,11 @@ A .NET library for parsing and generating INI configuration files with support f
 dotnet add package ConfKit
 ```
 
-## Usage
+## 🚀 Usage
 
-### Parsing INI Content
+### INI Support
+
+#### Parse INI Content
 
 ```csharp
 string iniContent = @"
@@ -31,16 +49,17 @@ string iniContent = @"
 host = localhost
 port = 1433";
 
-IniConfig config = IniParser.Parse(iniContent);
+var config = IniParser.Parse(iniContent);
 
-// Get database host value
 string host = config.Sections
     .First(s => s.Name == "server")
     .SubSections.First(s => s.Name == "database")
     .Entries.First(e => e.Key == "host").Value;
 ```
 
-### Creating Configurations Programmatically
+---
+
+#### Create INI Configuration
 
 ```csharp
 var config = new IniConfig
@@ -68,71 +87,79 @@ var config = new IniConfig
     ],
 };
 
-// Generate INI configuration string
-string outputConfig = config.ToString();
-Console.WriteLine(outputConfig);
+string output = config.ToString();
 ```
 
-### Deserialize UCI Configuration to custom config type using json
+---
 
-```ini
-username = admin
+### UCI Support
 
-[server]
-timeout = 30
-
-[server.database]
-host = localhost
-port = 1433
-
-[.cache]
-enabled = true
-```
+#### Parse UCI Configuration
 
 ```csharp
-// custom config type
-public class CustomConfig
-{
-    [JsonPropertyName("username")]
-    public string? UserName { get; set; }
+string configContent = @"
+package network
 
-    [JsonPropertyName("server")]
-    public Server? Server { get; set; }
-}
+config interface 'lan'
+    option type 'bridge'
+    option ifname 'eth0'
+    option proto 'static'
+";
 
-public class Server
-{
-    [JsonPropertyName("timeout")]
-    public int Timeout { get; set; }
+var config = UciParser.Parse(configContent);
 
-    [JsonPropertyName("database")]
-    public ServerDatabase? Database { get; set; }
-}
-
-public class ServerDatabase
-{
-    [JsonPropertyName("host")]
-    public string? Host { get; set; }
-    [JsonPropertyName("port")]
-    public int Port { get; set; }
-
-    [JsonPropertyName("cache")]
-    public ServerDatabaseCache? Cache { get; set; }
-}
-
-public class ServerDatabaseCache
-{
-    [JsonConverter(typeof(BooleanJsonConverter))] // use custom json converter
-    [JsonPropertyName("enabled")]
-    public bool Enabled { get; set; }
-}
-
-IniConfig config = IniParser.Parse(iniContent);
-// convert UciConfig to JsonObject that is able to deserialize to custom type.
-JsonObject jsonObject = config.ToSerializableJsonObject();
-JsonSerializerOptions serializerOptions = new() { NumberHandling = JsonNumberHandling.AllowReadingFromString };
-CustomConfig? customConfig = jsonObject.Deserialize<CustomConfig>(serializerOptions);
+Console.WriteLine(config.PackageName);
 ```
+
+---
+
+#### Create UCI Configuration
+
+```csharp
+var config = new UciConfig
+{
+    PackageName = "network",
+    Sections =
+    [
+        new UciSection("interface", "lan")
+        {
+            Options =
+            [
+                new UciOption("type", "bridge"),
+                new UciOption("ifname", "eth0"),
+                new UciOption("proto", "static")
+            ]
+        }
+    ]
+};
+
+string output = config.ToString();
+```
+
+---
+
+### 🔄 JSON Conversion & Strong Typing
+
+Both INI and UCI configurations can be converted into a `JsonObject`, making it easy to deserialize into custom types.
+
+#### Example
+
+```csharp
+var config = IniParser.Parse(iniContent);
+
+// Convert to JSON object
+JsonObject json = config.ToSerializableJsonObject();
+
+// Deserialize to custom type
+var options = new JsonSerializerOptions
+{
+    NumberHandling = JsonNumberHandling.AllowReadingFromString
+};
+
+var result = json.Deserialize<MyConfig>(options);
+```
+
+---
 
 ## TODO
 
