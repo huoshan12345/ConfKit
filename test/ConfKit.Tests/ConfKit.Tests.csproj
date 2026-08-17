@@ -9,9 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\ConfKit\ConfKit.csproj" />
   </ItemGroup>
-  <PropertyGroup>
-    <TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
-  </PropertyGroup>
   <ItemGroup>
     <Content Include="TestData\**\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

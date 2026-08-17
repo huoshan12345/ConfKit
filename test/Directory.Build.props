@@ -11,24 +11,15 @@
     <TargetFrameworkVersion>$([MSBuild]::GetTargetFrameworkVersion($(TargetFramework), 2))</TargetFrameworkVersion>
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
-
   <PropertyGroup>
     <_SettingFile>appsettings.json</_SettingFile>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="$(_SettingFile)" Condition="Exists('$(_SettingFile)')">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   <PropertyGroup>
-    <TestingPlatformCommandLineArguments>
-      $(TestingPlatformCommandLineArguments)
-      --report-trx
-      --report-trx-filename "$(MSBuildProjectName).trx"
-      --results-directory "$(_RootDir)TestResults/$(Configuration)/$(TargetFramework)"
-    </TestingPlatformCommandLineArguments>
+    <TestingPlatformCommandLineArguments>$(TestingPlatformCommandLineArguments) --report-trx</TestingPlatformCommandLineArguments>
   </PropertyGroup>
-
 </Project>
