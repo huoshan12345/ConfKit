@@ -24,7 +24,7 @@ public static class TestConfigs
                                        """;
 
     public const string Unquoted = "config foo bar\noption answer 42\n";
-    
+
     public const string Unnamed = """
                                     config foo named
                                         option pos '0'
@@ -106,16 +106,17 @@ public static class TestConfigs
             .Pipe(File.ReadAllText);
     }
 
-    public static readonly string Dhcp = ReadTestFile("dhcp");
-    public static readonly string DhcpUci = ReadTestFile("dhcp.uci");
+    // ensure uci file uses LF line endings for consistency with other test files
+    public static readonly string Dhcp = ReadTestFile("dhcp").CrLfToLf();
+    public static readonly string DhcpUci = ReadTestFile("dhcp.uci").CrLfToLf();
     public static readonly string DhcpJson = ReadTestFile("dhcp.json");
 
-    public static readonly string SmartDns = ReadTestFile("smartdns");
-    public static readonly string SmartDnsUci = ReadTestFile("smartdns.uci");
+    public static readonly string SmartDns = ReadTestFile("smartdns").CrLfToLf();
+    public static readonly string SmartDnsUci = ReadTestFile("smartdns.uci").CrLfToLf();
     public static readonly string SmartDnsJson = ReadTestFile("smartdns.json");
 
-    public static readonly string SectionOverride = ReadTestFile("section_override");
-    public static readonly string SectionOverrideUci = ReadTestFile("section_override.uci");
+    public static readonly string SectionOverride = ReadTestFile("section_override").CrLfToLf();
+    public static readonly string SectionOverrideUci = ReadTestFile("section_override.uci").CrLfToLf();
     public static readonly string SectionOverrideJson = ReadTestFile("section_override.json");
-    public static readonly string SectionOverrideUciFromJson = ReadTestFile("section_override.json.uci");
+    public static readonly string SectionOverrideUciFromJson = ReadTestFile("section_override.json.uci").CrLfToLf();
 }

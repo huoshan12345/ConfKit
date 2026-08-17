@@ -11,6 +11,7 @@
     <File Path="build/pkg.version" />
   </Folder>
   <Folder Name="/config/">
+    <File Path="global.json" />
     <File Path="LICENSE.TXT" />
     <File Path="NuGet.Config" />
     <File Path="README.md" />
