@@ -3,8 +3,4 @@
     <!--Empty RootNamespace does not work in Directory.Build.props, so put it in this file as a workaround-->
     <RootNamespace></RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' != ''">
-    <_TestResultsDirectory>$([System.IO.Path]::Combine($(MSBuildThisFileDirectory),..,TestResults,$(Configuration),$(TargetFramework),$(PlatformTarget)))</_TestResultsDirectory>
-    <TestingPlatformCommandLineArguments>$(TestingPlatformCommandLineArguments) --report-trx --report-trx-filename "$(MSBuildProjectName).trx" --results-directory "$(_TestResultsDirectory)"</TestingPlatformCommandLineArguments>
-  </PropertyGroup>
 </Project>
