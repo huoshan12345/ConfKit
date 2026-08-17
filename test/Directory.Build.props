@@ -13,9 +13,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <_RootDir>$(MSBuildThisFileDirectory)../</_RootDir>
-    <VSTestLogger>trx%3bLogFileName=$(MSBuildProjectName).trx</VSTestLogger>
-    <VSTestResultsDirectory>$(_RootDir)TestResults/$(Configuration)/$(TargetFramework)</VSTestResultsDirectory>
     <_SettingFile>appsettings.json</_SettingFile>
   </PropertyGroup>
 
@@ -24,5 +21,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <PropertyGroup>
+    <TestingPlatformCommandLineArguments>
+      $(TestingPlatformCommandLineArguments)
+      --report-trx
+      --report-trx-filename "$(MSBuildProjectName).trx"
+      --results-directory "$(_RootDir)TestResults/$(Configuration)/$(TargetFramework)"
+    </TestingPlatformCommandLineArguments>
+  </PropertyGroup>
 
 </Project>
