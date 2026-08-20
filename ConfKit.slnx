@@ -9,6 +9,7 @@
     <File Path="build/clean.ps1" />
     <File Path="build/pack.ps1" />
     <File Path="build/pkg.version" />
+    <File Path="build/Testing.props" />
   </Folder>
   <Folder Name="/config/">
     <File Path="global.json" />
@@ -19,11 +20,13 @@
   <Folder Name="/src/">
     <File Path="src/Directory.Build.props" />
     <File Path="src/Directory.Build.targets" />
+    <File Path="src/Directory.Packages.props" />
     <Project Path="src/ConfKit/ConfKit.csproj" />
   </Folder>
   <Folder Name="/test/">
     <File Path="test/Directory.Build.props" />
     <File Path="test/Directory.Build.targets" />
+    <File Path="test/Directory.Packages.props" />
     <Project Path="test/ConfKit.Tests/ConfKit.Tests.csproj" />
   </Folder>
 </Solution>
