@@ -22,7 +22,7 @@ public class ReadAsArrayJsonConverter : JsonConverter<object>
         var token = JsonElement.ParseValue(ref reader);
         var typeInfo = options.GetBuiltInJsonTypeInfo(typeToConvert);
 
-        if (typeToConvert == typeof(string) || typeToConvert.IsAssignableTo(typeof(IEnumerable)) == false)
+        if (typeToConvert == typeof(string) || typeof(IEnumerable).IsAssignableFrom(typeToConvert) == false)
             return token.Deserialize(typeInfo); // typeToConvert is not a collection type, just deserialize it with built-in typeInfo.
 
         if (token.ValueKind == JsonValueKind.Null)

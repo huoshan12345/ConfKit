@@ -3,6 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="PolySharp" Version="1.16.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
     <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="2.3.3" />
     <PackageVersion Include="System.Text.Json" Version="10.0.11" />

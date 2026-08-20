@@ -2,7 +2,7 @@
 
 internal static class KeyValuePairExtensions
 {
-#if NETSTANDARD2_0
+#if !NET5_0_OR_GREATER
     public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value)
     {
         key = pair.Key;
