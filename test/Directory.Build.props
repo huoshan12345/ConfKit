@@ -1,16 +1,17 @@
 <Project>
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <DisableFody>true</DisableFody>
-    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Is64BitOS>$([System.Environment]::Is64BitOperatingSystem)</Is64BitOS>
     <IsPackable>false</IsPackable>
     <LangVersion>latest</LangVersion>
-    <NoWarn>xUnit2013;CS9113</NoWarn>
+    <NoWarn>$(NoWarn);xUnit2013;xUnit1041;NU1901;NU1902;NU1903;NU1904;xUnit1051;AD0001;CS8500;NU1900</NoWarn>
     <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
     <IsWindows>$([MSBuild]::IsOSPlatform('Windows'))</IsWindows>
-    <Is64BitOS>$([System.Environment]::Is64BitOperatingSystem)</Is64BitOS>
     <TargetFrameworkVersion>$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)', 2))</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -28,8 +29,5 @@
     <Content Include="TestData\**\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup Condition="$([MSBuild]::VersionLessThan($(TargetFrameworkVersion), 8.0))">
-    <PackageReference Include="PolySharp" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -25,11 +25,20 @@ It provides a consistent programming model, supports structured configuration ac
 - Works with `netstandard2.0` and modern .NET versions
 - Easy to extend for additional formats (TOML, YAML, etc.)
 
-||TargetFramework(s)|Package|
-|----|----|----|
-|ConfKit|![netstandard2.0](https://img.shields.io/badge/netstandard-2.0-30a14e.svg) ![net8.0](https://img.shields.io/badge/net-8.0-30a14e.svg) ![net9.0](https://img.shields.io/badge/net-9.0-30a14e.svg) ![net10.0](https://img.shields.io/badge/net-10.0-30a14e.svg) |[![](https://img.shields.io/nuget/v/ConfKit?logo=nuget&label=nuget)](https://www.nuget.org/packages/ConfKit)|
+## Packages
 
----
+|Package|Target Frameworks|NuGet|
+|----|----|----|
+|[ConfKit](src/ConfKit)|![netstandard2.0](https://img.shields.io/badge/netstandard-2.0-30a14e.svg) ![net8.0](https://img.shields.io/badge/net-8.0-30a14e.svg) ![net9.0](https://img.shields.io/badge/net-9.0-30a14e.svg) ![net10.0](https://img.shields.io/badge/net-10.0-30a14e.svg) ![net472](https://img.shields.io/badge/net-472-30a14e.svg) |[![](https://img.shields.io/nuget/v/ConfKit?logo=nuget&label=nuget)](https://www.nuget.org/packages/ConfKit)|
+
+<details>
+<summary>Package Details</summary>
+
+|Package|Target Frameworks|
+|----|----|
+|[ConfKit](src/ConfKit)|ConfKit is a lightweight and extensible .NET library for parsing and generating multiple configuration formats, including INI and UCI.|
+
+</details>
 
 ## Installation
 
@@ -56,8 +65,6 @@ string host = config.Sections
     .SubSections.First(s => s.Name == "database")
     .Entries.First(e => e.Key == "host").Value;
 ```
-
----
 
 #### Create INI Configuration
 
@@ -90,8 +97,6 @@ var config = new IniConfig
 string output = config.ToString();
 ```
 
----
-
 ### UCI Support
 
 #### Parse UCI Configuration
@@ -110,8 +115,6 @@ var config = UciParser.Parse(configContent);
 
 Console.WriteLine(config.PackageName);
 ```
-
----
 
 #### Create UCI Configuration
 
@@ -136,8 +139,6 @@ var config = new UciConfig
 string output = config.ToString();
 ```
 
----
-
 ### 🔄 JSON Conversion & Strong Typing
 
 Both INI and UCI configurations can be converted into a `JsonObject`, making it easy to deserialize into custom types.
@@ -158,8 +159,6 @@ var options = new JsonSerializerOptions
 
 var result = json.Deserialize<MyConfig>(options);
 ```
-
----
 
 ## TODO
 

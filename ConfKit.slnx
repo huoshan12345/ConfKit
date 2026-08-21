@@ -8,6 +8,7 @@
     <File Path="build/bump-version.ps1" />
     <File Path="build/clean.ps1" />
     <File Path="build/pack.ps1" />
+    <File Path="build/Package.props" />
     <File Path="build/pkg.version" />
   </Folder>
   <Folder Name="/config/">
