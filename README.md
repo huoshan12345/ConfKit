@@ -29,7 +29,7 @@ It provides a consistent programming model, supports structured configuration ac
 
 |Package|Target Frameworks|NuGet|
 |----|----|----|
-|[ConfKit](src/ConfKit)|![netstandard2.0](https://img.shields.io/badge/netstandard-2.0-30a14e.svg) ![net8.0](https://img.shields.io/badge/net-8.0-30a14e.svg) ![net9.0](https://img.shields.io/badge/net-9.0-30a14e.svg) ![net10.0](https://img.shields.io/badge/net-10.0-30a14e.svg) ![net472](https://img.shields.io/badge/net-472-30a14e.svg) |[![](https://img.shields.io/nuget/v/ConfKit?logo=nuget&label=nuget)](https://www.nuget.org/packages/ConfKit)|
+|[ConfKit](src/ConfKit)|![netstandard2.0](https://img.shields.io/badge/netstandard-2.0-30a14e.svg) ![net472](https://img.shields.io/badge/net-472-30a14e.svg) ![net8.0](https://img.shields.io/badge/net-8.0-30a14e.svg) ![net9.0](https://img.shields.io/badge/net-9.0-30a14e.svg) ![net10.0](https://img.shields.io/badge/net-10.0-30a14e.svg) ![net11.0](https://img.shields.io/badge/net-11.0-30a14e.svg) |[![](https://img.shields.io/nuget/v/ConfKit?logo=nuget&label=nuget)](https://www.nuget.org/packages/ConfKit)|
 
 <details>
 <summary>Package Details</summary>
